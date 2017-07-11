@@ -21,7 +21,7 @@ golang默认安装在目录：
 ```
 wget https://storage.googleapis.com/golang/go1.8.3.linux-amd64.tar.gz
 ```
-进行获取
+进行获取  
 2. 将golang解压，使用命令：
 
 ```
@@ -63,14 +63,15 @@ mv gofabric8-0.4.124 $GOPATH
 make
 ```
 即可  
-==注意：当执行make指令时，会报go不存在的错误，
+
+**注意：当执行make指令时，会报go不存在的错误，
 ![f8_in_correct_path](../imgs/f8_in_correct_path.jpg)
-这是由于没有执行export操作后没有执行==
+这是由于没有执行export操作后没有执行**
 
 ```
 source /etc/profile
 ```
-==的缘故==
+**的缘故**
 
 
 
