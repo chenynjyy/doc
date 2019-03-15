@@ -32,14 +32,15 @@ EOF
 ```
 
 
-3. 禁止selinux（执行完关闭selinux防火墙）  
+3. 禁止selinux（执行完关闭selinux防火墙），关闭swap 
 
 ```
 setenforce 0
+swapoff
 ```
 
 
-4. 下载并安装k8s  
+4. 下载并安装k8s
 ```
 yum install kubeadm kubernetes-cni kubelet docker -y
 ```
