@@ -36,7 +36,7 @@ EOF
 
 ```
 setenforce 0
-swapoff
+swapoff -a
 ```
 
 
