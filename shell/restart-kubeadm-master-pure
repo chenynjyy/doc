@@ -1,0 +1,19 @@
+
+setenforce 0
+systemctl stop firewalld
+yes | kubeadm reset
+swapoff -a
+kubeadm init --pod-network-cidr=192.168.0.0/16 --kubernetes-version 1.13.4 # maybe conflict with vm or bare metal's network segment, modify 192.168.0.0/16 to other
+yes | mkdir -p $HOME/.kube
+yes | sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+yes | sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+if [ ! -f rbac-kdd.yaml ];then
+    wget https://docs.projectcalico.org/v3.3/getting-started/kubernetes/installation/hosted/rbac-kdd.yaml
+fi
+if [ ! -f calico.yaml ];then
+    wget https://docs.projectcalico.org/v3.3/getting-started/kubernetes/installation/hosted/kubernetes-datastore/calico-networking/1.7/calico.yaml
+fi
+
+kubectl apply -f rbac-kdd.yaml
+kubectl apply -f calico.yaml

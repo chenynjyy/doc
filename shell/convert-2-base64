@@ -1,0 +1,6 @@
+
+if [ $# -eq 0 ];then
+    echo Must input parameter
+fi
+
+echo -n $1 | base64

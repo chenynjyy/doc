@@ -1,0 +1,7 @@
+if [ $# -eq 1 ];then
+  ns=$1
+else
+  ns=default
+fi
+
+kubectl config set-context $(kubectl config current-context) --namespace=$1

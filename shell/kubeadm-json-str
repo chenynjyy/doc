@@ -1,0 +1,21 @@
+
+this_ip=$(ip -4 -o a | awk '$5=="brd" {print substr($4, 0, index($4, "/")-1)}' | head -n 1)
+this_token=$(kubeadm token list | awk '$1!="TOKEN" {print $1}')
+this_sha=$(openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null | openssl dgst -sha256 -hex | sed 's/^.* //')
+
+echo ip = $this_ip
+echo token = $this_token
+echo sha = $this_sha
+
+if [ -z $this_ip ];then
+    echo ip must not blank
+    exit 1
+elif [ -z $this_token ];then
+    echo token must not blank
+    exit 1
+elif [ -z $this_sha ];then
+    echo sha must not blank
+    exit 1
+fi
+
+echo kubeadm join $this_ip:6443 --token $this_token --discovery-token-ca-cert-hash sha256:$this_sha
