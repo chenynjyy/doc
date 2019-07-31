@@ -4,7 +4,7 @@
 
 ### installer
 - [install kubeadm](install-kubeadm.md)
-- [install kubeadm official](docs/install-kubeadm-officical.md)
+- [install kubeadm official](docs/install-kubeadm-official.md)
 
 ### shell
 - [restart kubeadm master](shell/restart-kubeadm-master-pure)
